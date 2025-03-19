@@ -8,9 +8,15 @@
   "license": "MIT",
   "private": false,
   "scripts": {
-    "start": "node app.js"
+    "start": "nodemon app.js"
   },
   "dependencies": {
-    "express": "^5.0.0"
+    "aws-sdk": "^2.1692.0",
+    "dotenv": "^16.4.7",
+    "express": "^5.0.0",
+    "multer": "^1.4.5-lts.1",
+    "multer-s3": "2.10.0",
+    "nodemon": "^3.1.9",
+    "pinata": "^2.1.0"
   }
 }
