@@ -1,3 +1,5 @@
+const { nanoid } = require("nanoid");
+
 const express = require("express");
 const multer = require("multer");
 const { PinataSDK } = require("pinata");
@@ -23,7 +25,17 @@ app.post("/upload", upload.single("file"), async (req, res) => {
   const fileBufferToUint8Array = async (fileBuffer) => {
     const blob = new Blob([fileBuffer]);
     const file = new File([blob], "jakis-image.png", { type: "image/png" });
-    const uploadMetadata = await pinata.upload.public.file(file);
+
+    const group = await pinata.groups.public.create({
+      name: nanoid(),
+    });
+
+    const uploadMetadata = await pinata.upload.public
+      .file(file)
+      .group(group.id);
+
+    console.log(uploadMetadata);
+
     const uploadBlob = await pinata.gateways.private.get(uploadMetadata.cid);
     const uploadBlobStreamUint8Array = await uploadBlob.data
       .stream()

@@ -1,6 +1,13 @@
 document.addEventListener("DOMContentLoaded", () => {
   async function uploadFile() {
     const fileInput = document.getElementById("fileInput").files[0];
+
+    console.log("This file size is: " + fileInput.size / 1024 / 1024 + "MiB");
+
+    // if (fileInput.size > 2097152) {
+    //   alert("File is too big!");
+    // }
+
     const status = document.getElementById("status");
     const img = document.getElementById("img");
     if (!fileInput) {
